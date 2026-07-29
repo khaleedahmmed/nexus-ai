@@ -13,7 +13,7 @@ from dataclasses import dataclass
 class User:
     id: int
     name: str
-    
+    email: str
     
 # from pydantic import BaseModel
 
