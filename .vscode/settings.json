@@ -1,0 +1,19 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/backend/.venv/Scripts/python.exe",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/backend"
+  ],
+  "python.analysis.pythonVersion": "3.10",
+  "python.envFile": "${workspaceFolder}/backend/.env",
+  "python.testing.cwd": "${workspaceFolder}/backend",
+  "terminal.integrated.env.windows": {
+    "PYTHONPATH": "${workspaceFolder}\\backend"
+  },
+  "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always",
+        "source.fixAll.ruff": "always"
+    }
+}
+

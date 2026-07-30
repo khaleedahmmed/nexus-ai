@@ -1,8 +1,7 @@
 from fastapi import APIRouter, HTTPException
-from src.schemas.user import UserResponse
-from src.schemas.user import UserCreateRequest
-from src.services.user_service import UserService
 from src.repositories.user_repository import UserRepository
+from src.schemas.user import UserCreateRequest, UserResponse
+from src.services.user_service import UserService
 
 router = APIRouter(prefix="/users", tags=["Users"])
 user_repository = UserRepository()
@@ -11,8 +10,10 @@ user_service = UserService(user_repository)
 
 @router.get("/")
 def get_users():
-        users = user_service.get_all_users()
-        return [UserResponse(id=user.id, name=user.name, email=user.email) for user in users]
+    users = user_service.get_all_users()
+    return [
+        UserResponse(id=user.id, name=user.name, email=user.email) for user in users
+    ]
 
 
 @router.get("/{id}")
@@ -23,12 +24,13 @@ def get_user(id: int):
     else:
         raise HTTPException(status_code=404, detail="User not found")
 
+
 @router.post("/")
 def create_user(request: UserCreateRequest):
 
     created_user = user_service.create_user(request)
     return UserResponse(
-    id=created_user.id,
-    name=created_user.name,
-    email=created_user.email,
-  )
+        id=created_user.id,
+        name=created_user.name,
+        email=created_user.email,
+    )

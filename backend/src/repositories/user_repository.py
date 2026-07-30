@@ -1,7 +1,5 @@
 from src.models.user import User
-from src.repositories.user_repository_interface import (
-    UserRepositoryInterface,
-)
+from src.repositories.user_repository_interface import UserRepositoryInterface
 
 
 class UserRepository(UserRepositoryInterface):
