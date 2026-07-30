@@ -1,3 +1,4 @@
+from src.exceptions.user_exceptions import UserNotFoundException
 from src.models.user import User
 from src.repositories.user_repository_interface import UserRepositoryInterface
 from src.schemas.user import UserCreateRequest
@@ -27,5 +28,14 @@ class UserService:
     def get_all_users(self) -> list[User]:
         return self.user_repository.get_all()
 
-    def get_user_by_id(self, user_id: int) -> User | None:
-        return self.user_repository.get_by_id(user_id)
+    def get_user_by_id(
+        self,
+        user_id: int,
+    ) -> User:
+
+        user = self.user_repository.get_by_id(user_id)
+
+        if user is None:
+            raise UserNotFoundException(user_id)
+
+        return user
