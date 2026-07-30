@@ -2,9 +2,11 @@ from fastapi import APIRouter, HTTPException
 from src.schemas.user import UserResponse
 from src.schemas.user import UserCreateRequest
 from src.services.user_service import UserService
+from src.repositories.user_repository import UserRepository
 
 router = APIRouter(prefix="/users", tags=["Users"])
-user_service = UserService()
+user_repository = UserRepository()
+user_service = UserService(user_repository)
 
 
 @router.get("/")
